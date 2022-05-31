@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          $('#selectitem').DataTable( {
+          "order": [[ 0, "desc" ]],"pageLength": 100
+      } );
+            var table = $('#selectitem').DataTable();
+            $('#selectitem tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+        });
+        
+    </script>
+
+    <style>
+      table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 50%;
+  
+}
+      table th, table td{
+  white-space: nowrap !important;
+}
+
+        p.thick {
+  font-weight: bold;
+}
+        .red {
+          color: red;
+        }
+    
+        .orange {
+          color: orange !important;
+        }
+    
+        .green {
+          color: green;
+        }
+      </style>
+          
+    <title> Connect SQL test</title>
+</head>
+ <a href= " {% url 'table2' %} " >ถัดไป</a>
+<body><center>
+    <h1>Proc_INVDataByY 2022</h1>
+    <hr/>
+    <table id="selectitem" class="display" style="width:100%">
+      <thead>
+        <tr>
+          <th data-order='desc' data-field="week" data-sortable="true">Week#</th>
+            <th>No.</th>
+            <th>ท่าเรือส่งออก</th>
+            <th>วันที่ยื่น สอ.</th>
+            <th>เลขที่ สอ.1</th>
+            <th>INV</th>
+            <th>SI</th>
+            <th>Customer</th>
+            <th>วันรับตู้</th>
+            <th>Closing</th>
+            <th>ETD</th>
+            <th>SKU1</th>
+            <th>SKU2</th>
+            <th>SKU3</th>
+            <th>SKU4</th>
+            <th>SKU5</th>
+            <th>SKU6</th>
+            <th>SKU7</th>
+            <th>SKU8</th>
+            <th>SKU9</th>
+            <th>SKU10</th>
+            <th>SKU11</th>
+            <th>SKU12</th>
+            <th>SKU13</th>
+            <th>SKU14</th>
+            <th>SKU15</th>
+            <th>SKU16</th>
+            <th>SKU17</th>
+            <th>SKU18</th>
+            <th>SKU19</th>
+            <th>SKU20</th>
+            <th>SKU21</th>
+            <th>SKU22</th>
+            <th>SKU23</th>
+            <th>SKU24</th>
+            <th>SKU25</th>
+            <th>SKU26</th>
+            <th>SKU27</th>
+            <th>SKU28</th>
+            <th>SKU29</th>
+            <th>SKU30</th>
+            <th>Remark</th>
+        </tr>
+      </thead>
+        {% for datadisplay in sqlserverconn %}
+        <tr>
+            <td> {{datadisplay.0|cut:"None"}} </td>
+            <td> {{datadisplay.1|cut:"None"}} </td>
+            <td> {{datadisplay.2|cut:"None"}} </td>
+            {% if datadisplay.72 is 1   %}
+            <td style="background-color:#00FFFF;">{{ datadisplay.3|date:'d-m-Y' }}</td>
+            <td style="background-color:#00FFFF;">{{ datadisplay.4|cut:"None" }}</td>
+            <td style="background-color:#00FFFF;">{{ datadisplay.5|cut:"None" }}</td>
+            <td style="background-color:#00FFFF;">{{ datadisplay.6|cut:"None" }}</td>
+            {% else %}
+            <td> {{datadisplay.3|date:'d-m-Y'}}</td>
+            <td> {{datadisplay.4|cut:"None"}} </td>
+            <td> {{datadisplay.5|cut:"None"}} </td>
+            <td> {{datadisplay.6|cut:"None"}} </td>
+            {% endif %}
+            <td> {{datadisplay.7|cut:"None"}} </td>
+            <td> {{datadisplay.8|date:'d-m-Y'}} </td>
+            <td> {{datadisplay.9|date:'d-m-Y'}} </td>
+            <td> {{datadisplay.10|date:'d-m-Y'}} </td>
+            {% if datadisplay.ChkSKU01 is 1   %}
+            <td class="thick" style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU1|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU1|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU02 is 1   %}
+            <td  bold; style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU2|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU2|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU03 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU3|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU3|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU04 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU4|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU4|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU05 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU5|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU5|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU06 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU6|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU6|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU07 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU7|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU7|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU08 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU8|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU8|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU09 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU9|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU9|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU10 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU10|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU10|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU11 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU11|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU11|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU12 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU12|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU12|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU13 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU13|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU13|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU14 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU14|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU14|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU15 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU15|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU15|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU16 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU16|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU16|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU17 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU17|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU17|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU18 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU18|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU18|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU19 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU19|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU19|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU20 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU20|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU20|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU21 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU21|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU21|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU22 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU22|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU22|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU23 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU23|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU23|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU24 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU24|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU24|cut:"None"}} </td>
+            {% endif %}
+               {% if datadisplay.ChkSKU25 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU25|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU25|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU26 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU26|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU26|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU27 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU27|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU27|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU28 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU28|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU28|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU29 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU29|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU29|cut:"None"}} </td>
+            {% endif %}
+            {% if datadisplay.ChkSKU30 is 1   %}
+            <td style="background-color:#9FE2BF;"><b>{{ datadisplay.SKU30|cut:"None" }}</b></td>
+            {% else %}
+            <td> {{datadisplay.SKU30|cut:"None"}} </td>
+            {% endif %}
+
+            <td> {{datadisplay.41|cut:"None"}} </td>
+            
+         
+        
+        </tr>
+        {% endfor %}
+
+
+    </table>
+    
+    </center></body>
+    
+   
+
+    <!--
+{% if datadisplay.72 == '1'   %}
+    <td style="background-color:#9FE2BF;">{{ datadisplay.3 }}</td>
+    {% else %}
+    <td>{{ datadisplay.3 }}</td>
+    {% endif %}
+//-->
